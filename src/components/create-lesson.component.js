@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 
 export default class CreateLesson extends Component {
 
@@ -58,6 +58,16 @@ export default class CreateLesson extends Component {
 
     console.log("Submit form : ", this.state)
 
+    const newLesson = {
+      dayOfTheWeek : this.state.dayOfTheWeek,
+      time : this.state.time,
+      location : this.state.location,
+      yogaStyle : this.state.yogaStyle,
+      linkToStudio : this.state.linkToStudio
+    }
+
+    axios.post('http://localhost:1234/lessons/addLesson', newLesson)
+      .then(res => console.log(res.data));
 
     // reset state to blank once submitted
     this.setState({
