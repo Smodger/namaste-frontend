@@ -1,3 +1,6 @@
+## I have bootstrapped with create-react-app for speed in the set up proccess
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
