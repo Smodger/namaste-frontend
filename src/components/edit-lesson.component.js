@@ -89,38 +89,44 @@ export default class EditLesson extends Component {
   render(){
     return (
       <div>
-        <h3>Update Lesson</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Day of the Week</label>
-            <input type="text" className="form-control" value={this.state.dayOfTheWeek} onChange={this.updateDOW}></input>
-          </div>
+        <div className="hero-info-img">
+          <p>Emily Thomson</p>
+          <p>Teaches Yoga</p>
+        </div>
+        <div>
+          <h3>Update Lesson</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Day of the Week</label>
+              <input type="text" className="form-control" value={this.state.dayOfTheWeek} onChange={this.updateDOW}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Time</label>
-            <input type="number" className="form-control" value={this.state.time} onChange={this.updateTime}></input>
-          </div>
+            <div className="form-group">
+              <label>Time</label>
+              <input type="number" className="form-control" value={this.state.time} onChange={this.updateTime}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Location</label>
-            <input type="string" className="form-control" value={this.state.location} onChange={this.updateLocation}></input>
-          </div>
+            <div className="form-group">
+              <label>Location</label>
+              <input type="string" className="form-control" value={this.state.location} onChange={this.updateLocation}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Yoga Style</label>
-            <input type="string" className="form-control" value={this.state.yogaStyle} onChange={this.updateYogaStyle}></input>
-          </div>
+            <div className="form-group">
+              <label>Yoga Style</label>
+              <input type="string" className="form-control" value={this.state.yogaStyle} onChange={this.updateYogaStyle}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Link to Studio</label>
-            <input type="string" className="form-control" value={this.state.linkToStudio} onChange={this.updateURL}></input>
-          </div>
+            <div className="form-group">
+              <label>Link to Studio</label>
+              <input type="string" className="form-control" value={this.state.linkToStudio} onChange={this.updateURL}></input>
+            </div>
 
-          <div className="form-group">
-            <input type="submit" value="Update Lesson" className="btn btn-primary"></input>
-          </div>
+            <div className="form-group">
+              <input type="submit" value="Update Lesson" className="btn btn-primary"></input>
+            </div>
 
-        </form>
+          </form>
+        </div>
       </div>
     )
   }

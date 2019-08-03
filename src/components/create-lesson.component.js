@@ -81,39 +81,45 @@ export default class CreateLesson extends Component {
 
   render(){
     return (
-      <div style={{marginTop : 20}}>
-        <h3>Create Class</h3>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Day of the Week</label>
-            <input type="text" className="form-control" value={this.state.dayOfTheWeek} onChange={this.onChangeDOW}></input>
-          </div>
+      <div>
+        <div className="hero-info-img">
+          <p>Emily Thomson</p>
+          <p>Teaches Yoga</p>
+        </div>
+        <div style={{marginTop : 20}}>
+          <h3>Create Class</h3>
+          <form onSubmit={this.onSubmit}>
+            <div className="form-group">
+              <label>Day of the Week</label>
+              <input type="text" className="form-control" value={this.state.dayOfTheWeek} onChange={this.onChangeDOW}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Time</label>
-            <input type="number" max="24" className="form-control" value={this.state.time} onChange={this.onChangeTime}></input>
-          </div>
+            <div className="form-group">
+              <label>Time</label>
+              <input type="number" max="24" className="form-control" value={this.state.time} onChange={this.onChangeTime}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Location</label>
-            <input type="text" className="form-control" value={this.state.location} onChange={this.onChangeLocation}></input>
-          </div>
+            <div className="form-group">
+              <label>Location</label>
+              <input type="text" className="form-control" value={this.state.location} onChange={this.onChangeLocation}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Yoga Style</label>
-            <input type="text" className="form-control" value={this.state.yogaStyle} onChange={this.onChangeYogaStyle}></input>
-          </div>
+            <div className="form-group">
+              <label>Yoga Style</label>
+              <input type="text" className="form-control" value={this.state.yogaStyle} onChange={this.onChangeYogaStyle}></input>
+            </div>
 
-          <div className="form-group">
-            <label>Link to Yoga Studio</label>
-            <input type="text" className="form-control" value={this.state.linkToStudio} onChange={this.onChangeStudio}></input>
-          </div>
+            <div className="form-group">
+              <label>Link to Yoga Studio</label>
+              <input type="text" className="form-control" value={this.state.linkToStudio} onChange={this.onChangeStudio}></input>
+            </div>
 
-          <div className="form-group">
-            <input type="submit" value="Create Lesson" className="btn btn-primary"></input>
-          </div>
+            <div className="form-group">
+              <input type="submit" value="Create Lesson" className="btn btn-primary"></input>
+            </div>
 
-        </form>
+          </form>
+        </div>
       </div>
     )
   }

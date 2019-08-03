@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.hero-landing-img{
+  height: 100vh;
+  background: url('http://www.allwhitebackground.com/images/6/Yoga-Background-HD-Image.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-info-img{
+  height: 80vh;
+  background: url('http://www.allwhitebackground.com/images/6/Yoga-Background-HD-Image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

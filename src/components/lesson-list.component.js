@@ -52,21 +52,27 @@ export default class LessonList extends Component {
   render(){
     return (
       <div>
-        <h3>Class List</h3>
-        <table className="table table-striped" style={{ marginTop : 20 }}>
-          <thead>
-            <tr>
-              <th>Day of the Week</th>
-              <th>Time</th>
-              <th>Location</th>
-              <th>Yoga Style</th>
-              <th>Link to yoga studio</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.lessonList() }
-          </tbody>
-        </table>
+        <div className="hero-info-img">
+          <p>Emily Thomson</p>
+          <p>Teaches Yoga</p>
+        </div>
+        <div>
+          <h3>Class List</h3>
+          <table className="table table-striped" style={{ marginTop : 20 }}>
+            <thead>
+              <tr>
+                <th>Day of the Week</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Yoga Style</th>
+                <th>Link to yoga studio</th>
+              </tr>
+            </thead>
+            <tbody>
+              { this.lessonList() }
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }
