@@ -18,6 +18,7 @@ code {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .hero-info-img{
@@ -25,4 +26,55 @@ code {
   background: url('http://www.allwhitebackground.com/images/6/Yoga-Background-HD-Image.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+}
+
+.page-container{
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.all-retreats-container{
+  width: 50%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.social-media-icons > a{
+  height: 30px!important;
+  width: 30px!important;
+  margin-right: 10px;
+}
+
+.hero-img-text{
+  color: #ffffff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.contact-logo{
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  margin: auto;
+  background-image: url('./images/em-thomson-logo.jpg');
+  width: 100px;
+  background-repeat: no-repeat;
+}
+
+.retreat-thumbnail{
+  display: inline-block;
+  width : 300px;
+  height : 200px;
+  background-image : url('./images/yoga-retreat-stock.jpg');
+  background-size: contain;
+  background-position : center;
+  background-repeat : no-repeat;
+}
+
+.retreat-text{
+  padding: 20px;
+  float: right;
 }

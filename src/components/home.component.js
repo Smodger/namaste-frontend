@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 export default class Home extends Component {
 
@@ -8,8 +6,8 @@ export default class Home extends Component {
 
     return (
       <div className="hero-landing-img">
-        <p>Emily Thomson</p>
-        <p>Teaches Yoga</p>
+        <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
+        <p className="hero-img-text">Teaches Yoga</p>
       </div>
     )
   }

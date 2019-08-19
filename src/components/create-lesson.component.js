@@ -45,7 +45,7 @@ export default class CreateLesson extends Component {
       yogaStyle : event.target.value
     })
   }
-
+  //
   onChangeStudio(event){
     this.setState({
       linkToStudio : event.target.value
@@ -83,10 +83,10 @@ export default class CreateLesson extends Component {
     return (
       <div>
         <div className="hero-info-img">
-          <p>Emily Thomson</p>
-          <p>Teaches Yoga</p>
+          <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
+          <p className="hero-img-text">Teaches Yoga</p>
         </div>
-        <div style={{marginTop : 20}}>
+        <div className="page-container">
           <h3>Create Class</h3>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">

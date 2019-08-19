@@ -90,10 +90,10 @@ export default class EditLesson extends Component {
     return (
       <div>
         <div className="hero-info-img">
-          <p>Emily Thomson</p>
-          <p>Teaches Yoga</p>
+          <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
+          <p className="hero-img-text">Teaches Yoga</p>
         </div>
-        <div>
+        <div className="page-container">
           <h3>Update Lesson</h3>
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
