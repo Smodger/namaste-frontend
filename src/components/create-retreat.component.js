@@ -101,8 +101,12 @@ export default class CreateRetreat extends Component {
       bookingUrl : this.state.bookingUrl,
       whatsIncluded : this.state.whatsIncluded
     }
+    
+    const token = localStorage.getItem('jwtToken');
 
-    axios.post('http://localhost:1234/retreats/addRetreat', newRetreat)
+    axios.post('http://localhost:1234/retreats/addRetreat', newRetreat, {
+      headers :{ Authorization : "Bearer " + token}
+    })
       .then(res => console.log(res.data));
 
     // reset state to blank once submitted

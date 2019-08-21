@@ -18,7 +18,8 @@ export default class CreateLesson extends Component {
       time : 0,
       location : "",
       yogaStyle : "",
-      linkToStudio : ""
+      linkToStudio : "",
+      token : ''
     }
   }
 
@@ -45,7 +46,7 @@ export default class CreateLesson extends Component {
       yogaStyle : event.target.value
     })
   }
-  //
+
   onChangeStudio(event){
     this.setState({
       linkToStudio : event.target.value
@@ -66,7 +67,11 @@ export default class CreateLesson extends Component {
       linkToStudio : this.state.linkToStudio
     }
 
-    axios.post('http://localhost:1234/lessons/addLesson', newLesson)
+    const token = localStorage.getItem('jwtToken');
+
+    axios.post('http://localhost:1234/lessons/addLesson', newLesson,{
+      headers :{ Authorization : "Bearer " + token}
+    })
       .then(res => console.log(res.data));
 
     // reset state to blank once submitted

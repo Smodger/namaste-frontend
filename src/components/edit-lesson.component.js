@@ -24,7 +24,11 @@ export default class EditLesson extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:1234/lessons/'+this.props.match.params.id)
+    const token = localStorage.getItem('jwtToken');
+
+    axios.get('http://localhost:1234/lessons/'+this.props.match.params.id, {
+      headers :{ Authorization : "Bearer " + token}
+    })
       .then(res => {
         this.setState({
           dayOfTheWeek : res.data.dayOfTheWeek,

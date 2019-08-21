@@ -10,10 +10,11 @@ import {Contact} from './components/contact.component';
 import Home from './components/home.component';
 import CreateRetreat from './components/create-retreat.component';
 import ListRetreats from './components/retreat-list.component';
+import Signup from './components/signup.component'
 
 class App extends Component {
 
-  render() {
+  render(){
     return (
       <Router>
         <div>
@@ -37,6 +38,7 @@ class App extends Component {
         <Route path="/contact" component={Contact}></Route>
         <Route path="/create-retreat" component={CreateRetreat}></Route>
         <Route path="/list-retreats" component={ListRetreats}></Route>
+        <Route path="/signup" component={Signup}></Route>
 
       </Router>
     );
