@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
 const Lesson = props => (
   <tr>
     <td>{props.lesson.dayOfTheWeek}</td>
-    <td>{props.lesson.time}</td>
+    <td>{props.lesson.startHour} : {props.lesson.startMinutes}</td>
     <td>{props.lesson.location}</td>
     <td>{props.lesson.yogaStyle}</td>
     <td>{props.lesson.linkToStudio}</td>
@@ -16,39 +15,27 @@ const Lesson = props => (
   </tr>
 )
 
-const DeleteLesson = props => (
-  <td>
-    <button className="btn btn-danger">Delete</button>
-  </td>
-)
-
 export default class LessonList extends Component {
 
   constructor(props){
     super(props);
+    this.deleteLesson = this.deleteLesson.bind(this);
+
     this.state = {
       lessons : []
     };
   }
 
-  BookingLink(props){
-    if(!props.lesson.linkToStudio && props.lesson.location !== "Tooting Bec Lido"){
-      return  props.lesson.linkToStudio = "Email me for booking details at emthomsonyoga@gmail.com"
-    }else if(!props.lesson.linkToStudio && props.lesson.location === 'Tooting Bec Lido'){
-      return props.lesson.linkToStudio = "Drop in price between £5 - £8 CONFIRM"
-    }
+  deleteLesson(){
+    console.log('in delete');
+    axios.delete('http://localhost:1234/lessons/delete'+this.props.match.params.id)
+      .then(res =>{
+        console.log('Lesson Deleted', this.props.match.params.id, this.props.match.params);
+      })
+      .catch(function(err){
+        console.log('errror deleting lesson', err);
+      })
   }
-
-  // deleteLesson(){
-  //   console.log('in delete');
-  //   axios.delete('http://localhost:1234/lessons/'+this.props.match.params.id)
-  //     .then(res =>{
-  //       console.log('Lesson Deleted', this.props.match.params.id, this.props.match.params);
-  //     })
-  //     .catch(function(err){
-  //       console.log('errror deleting lesson', err);
-  //     })
-  // }
 
   getLessons(){
     axios.get('http://localhost:1234/lessons')
@@ -62,7 +49,6 @@ export default class LessonList extends Component {
 
   componentDidMount(){
     this.getLessons();
-    // this.deleteLesson();
   }
 
   fridayClasses(){
@@ -70,7 +56,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Friday'
     })
     return friday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
+      return(
+        <Lesson lesson={data} key={i}>
+          <button className="btn btn-danger" onClick={this.deleteLesson}>Delete</button>
+        </Lesson>)
     })
   }
   saturdayClasses(){
@@ -94,7 +83,10 @@ export default class LessonList extends Component {
       return data.dayOfTheWeek === 'Monday'
     })
     return monday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
+      return (
+        <Lesson lesson={data} key={i}>
+          <button className="btn btn-danger" onClick={this.deleteLesson}>Delete</button>
+        </Lesson>)
     })
   }
   tuesdayClasses(){
@@ -140,6 +132,7 @@ export default class LessonList extends Component {
                 <th>Location</th>
                 <th>Yoga Style</th>
                 <th>Link to yoga studio</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

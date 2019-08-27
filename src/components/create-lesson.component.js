@@ -7,7 +7,8 @@ export default class CreateLesson extends Component {
     super(props);
 
     this.onChangeDOW = this.onChangeDOW.bind(this);
-    this.onChangeTime = this.onChangeTime.bind(this);
+    this.onChangeHour = this.onChangeHour.bind(this);
+    this.onChangeMinutes = this.onChangeMinutes.bind(this);
     this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onChangeYogaStyle = this.onChangeYogaStyle.bind(this);
     this.onChangeStudio = this.onChangeStudio.bind(this);
@@ -15,7 +16,8 @@ export default class CreateLesson extends Component {
 
     this.state = {
       dayOfTheWeek : "",
-      time : 0,
+      startHour : 0,
+      startMinutes : "",
       location : "",
       yogaStyle : "",
       linkToStudio : "",
@@ -29,9 +31,15 @@ export default class CreateLesson extends Component {
     })
   }
 
-  onChangeTime(event){
+  onChangeHour(event){
     this.setState({
-      time : event.target.value
+      startHour : event.target.value
+    })
+  }
+
+  onChangeMinutes(event){
+    this.setState({
+      startMinutes : event.target.value
     })
   }
 
@@ -61,7 +69,8 @@ export default class CreateLesson extends Component {
 
     const newLesson = {
       dayOfTheWeek : this.state.dayOfTheWeek,
-      time : this.state.time,
+      startHour : this.state.startHour,
+      startMinutes : this.state.startMinutes,
       location : this.state.location,
       yogaStyle : this.state.yogaStyle,
       linkToStudio : this.state.linkToStudio
@@ -77,7 +86,8 @@ export default class CreateLesson extends Component {
     // reset state to blank once submitted
     this.setState({
       dayOfTheWeek : "",
-      time : 0,
+      startHour : 0,
+      startMinutes : "",
       location : "",
       yogaStyle : "",
       linkToStudio : ""
@@ -96,12 +106,14 @@ export default class CreateLesson extends Component {
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label>Day of the Week</label>
-              <input type="text" className="form-control" value={this.state.dayOfTheWeek} onChange={this.onChangeDOW}></input>
+              <input className="form-control" value={this.state.dayOfTheWeek} onChange={this.onChangeDOW}></input>
             </div>
 
             <div className="form-group">
-              <label>Time</label>
-              <input type="number" max="24" className="form-control" value={this.state.time} onChange={this.onChangeTime}></input>
+              <label className="block">Time - 24 hours</label>
+              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.startHour} onChange={this.onChangeHour}></input>
+              <span style={{ marginLeft : 10, marginRight : 10}}>:</span>
+              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.startMinutes} onChange={this.onChangeMinutes}></input>
             </div>
 
             <div className="form-group">

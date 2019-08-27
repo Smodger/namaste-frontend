@@ -44,6 +44,7 @@ export default class Signin extends Component {
         const token = res.data.token;
         localStorage.setItem('jwtToken', token)
       })
+    this.props.history.push('/')
   }
 
   render(){

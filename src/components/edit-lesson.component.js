@@ -8,7 +8,8 @@ export default class EditLesson extends Component {
     super(props);
 
     this.updateDOW = this.updateDOW.bind(this);
-    this.updateTime = this.updateTime.bind(this);
+    this.updateHour = this.updateHour.bind(this);
+    this.updateMinutes = this.updateMinutes.bind(this);
     this.updateLocation = this.updateLocation.bind(this);
     this.updateYogaStyle = this.updateYogaStyle.bind(this);
     this.updateURL = this.updateURL.bind(this);
@@ -16,7 +17,8 @@ export default class EditLesson extends Component {
 
     this.state = {
       dayOfTheWeek : "",
-      time : 0,
+      startHour : 0,
+      startMinutes : 0,
       location : "",
       yogaStyle : "",
       linkToStudio : ""
@@ -24,15 +26,12 @@ export default class EditLesson extends Component {
   }
 
   componentDidMount(){
-    const token = localStorage.getItem('jwtToken');
-
-    axios.get('http://localhost:1234/lessons/'+this.props.match.params.id, {
-      headers :{ Authorization : "Bearer " + token}
-    })
+    axios.get('http://localhost:1234/lessons/'+this.props.match.params.id)
       .then(res => {
         this.setState({
           dayOfTheWeek : res.data.dayOfTheWeek,
-          time : res.data.time,
+          startHour : res.data.startHour,
+          startMinutes : res.data.startMinutes,
           location : res.data.location,
           yogaStyle : res.data.yogaStyle,
           linkToStudio : res.data.linkToStudio
@@ -49,9 +48,15 @@ export default class EditLesson extends Component {
     })
   }
 
-  updateTime(event){
+  updateHour(event){
     this.setState({
-      time : event.target.value
+      startHour : event.target.value
+    })
+  }
+
+  updateMinutes(event){
+    this.setState({
+      startMinutes : event.target.value
     })
   }
 
@@ -75,16 +80,19 @@ export default class EditLesson extends Component {
 
   onSubmit(event){
     event.preventDefault();
-
+    const token = localStorage.getItem('jwtToken');
     const lessonObj = {
       dayOfTheWeek : this.state.dayOfTheWeek,
-      time : this.state.time,
+      startHour : this.state.startHour,
+      startMinutes : this.state.startMinutes,
       location : this.state.location,
       yogaStyle : this.state.yogaStyle,
       linkToStudio : this.state.linkToStudio
     };
 
-    axios.post('http://localhost:1234/lessons/update/' + this.props.match.params.id, lessonObj)
+    axios.post('http://localhost:1234/lessons/update/' + this.props.match.params.id, lessonObj, {
+      headers :{ Authorization : "Bearer " + token}
+    })
       .then(res => console.log('data', res.data));
 
     this.props.history.push('/')
@@ -102,12 +110,14 @@ export default class EditLesson extends Component {
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label>Day of the Week</label>
-              <input type="text" className="form-control" value={this.state.dayOfTheWeek} onChange={this.updateDOW}></input>
+              <input className="form-control" value={this.state.dayOfTheWeek} onChange={this.updateDOW}></input>
             </div>
 
             <div className="form-group">
-              <label>Time</label>
-              <input type="number" className="form-control" value={this.state.time} onChange={this.updateTime}></input>
+              <label className="block">Time - 24 hours</label>
+              <input type="number" max="24" className="form-control col-sm-2 inline-block" placeholder="Hours" value={this.state.startHour} onChange={this.updateHour}></input>
+              <span style={{ marginLeft : 10, marginRight : 10}}>:</span>
+              <input type="number" max="60" className="form-control col-sm-2 inline-block" placeholder="Minutes" value={this.state.startMinutes} onChange={this.updateMinutes}></input>
             </div>
 
             <div className="form-group">

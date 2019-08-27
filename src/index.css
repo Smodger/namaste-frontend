@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+.inline-block{
+  display: inline-block!important;
+}
+.block{
+  display: block!important;
+}
+.inline{
+  display: inline!important;
+}
+
 .hero-landing-img{
   height: 100vh;
   background: url('http://www.allwhitebackground.com/images/6/Yoga-Background-HD-Image.jpg');
