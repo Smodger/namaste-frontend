@@ -6,8 +6,11 @@ export default class Home extends Component {
 
     return (
       <div className="hero-landing-img">
-        <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-        <p className="hero-img-text">Teaches Yoga</p>
+        <div className="hero-landing-overlay"></div>
+        <div className="hero-landing-text-container">
+          <p className="hero-img-text">Emily Thomson</p>
+          <p className="hero-img-text">Teaches Yoga</p>
+        </div>
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
-export default class Signin extends Component {
+export default class Signup extends Component {
 
   constructor(props){
     super(props);
@@ -12,7 +12,8 @@ export default class Signin extends Component {
 
     this.state = {
       email : "",
-      password : ""
+      password : "",
+      hasToken : ""
     }
   }
 

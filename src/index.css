@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+p{
+  margin: 0!important;
+}
+
 .inline-block{
   display: inline-block!important;
 }
@@ -22,21 +26,50 @@ code {
   display: inline!important;
 }
 
+.navbar{
+  height: 10vh;
+  background-color: #0e3782;
+}
+
+.navbar-brand{
+  color: white;
+}
+
+.navbar-brand:hover{
+  color: #ed1a64;
+}
+
+.page-heading{
+  text-align: center;
+  font-size: 40px;
+  color: #ed1a64;
+}
+
 .hero-landing-img{
-  height: 100vh;
-  background: url('http://www.allwhitebackground.com/images/6/Yoga-Background-HD-Image.jpg');
+  height: 90vh;
+  background: url('./images/landing.jpeg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 
+.hero-landing-overlay{
+  height: 90vh;
+  background-color: rgba(14, 55, 130,0.15)
+}
+
 .hero-info-img{
   height: 80vh;
-  background: url('http://www.allwhitebackground.com/images/6/Yoga-Background-HD-Image.jpg');
+  background: url('./images/landing.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.hero-info-overlay{
+  height: 80vh;
+  background-color: rgba(14, 55, 130,0.15)
 }
 
 .page-container{
@@ -57,11 +90,22 @@ code {
   margin-right: 10px;
 }
 
-.hero-img-text{
-  color: #ffffff;
+.hero-img-text-container{
+  text-align: center;
+  color: #ed1a64;
+  font-size: 50px;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  bottom: 60%;
+  right: 30%;
+}
+
+.hero-landing-text-container{
+  text-align: center;
+  color: #ed1a64;
+  font-size: 50px;
+  position: absolute;
+  bottom: 70%;
+  right: 20%;
 }
 
 .contact-logo{

@@ -17,7 +17,7 @@ export default class Header extends Component {
     return (
       <Router>
         <div>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg">
             <Link to='/' className='navbar-brand'>Home</Link>
             <Link to='/lessons' className='navbar-brand'>Lesson List</Link>
             <Link to='/create-lesson' className='navbar-brand'>Create Lesson</Link>

@@ -1,40 +1,18 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Lesson = props => (
-  <tr>
-    <td>{props.lesson.dayOfTheWeek}</td>
-    <td>{props.lesson.startHour} : {props.lesson.startMinutes}</td>
-    <td>{props.lesson.location}</td>
-    <td>{props.lesson.yogaStyle}</td>
-    <td>{props.lesson.linkToStudio}</td>
-    <td>
-      <Link to={"/edit/" + props.lesson._id}>Edit</Link>
-    </td>
-  </tr>
-)
+import Lesson from './lesson.component'
 
 export default class LessonList extends Component {
 
   constructor(props){
     super(props);
+
     this.deleteLesson = this.deleteLesson.bind(this);
 
     this.state = {
       lessons : []
     };
-  }
-
-  deleteLesson(){
-    console.log('in delete');
-    axios.delete('http://localhost:1234/lessons/delete'+this.props.match.params.id)
-      .then(res =>{
-        console.log('Lesson Deleted', this.props.match.params.id, this.props.match.params);
-      })
-      .catch(function(err){
-        console.log('errror deleting lesson', err);
-      })
   }
 
   getLessons(){
@@ -51,79 +29,96 @@ export default class LessonList extends Component {
     this.getLessons();
   }
 
-  fridayClasses(){
-    var friday = this.state.lessons.filter(function(data, i){
-      return data.dayOfTheWeek === 'Friday'
-    })
-    return friday.map(function(data, i){
-      return(
-        <Lesson lesson={data} key={i}>
-          <button className="btn btn-danger" onClick={this.deleteLesson}>Delete</button>
-        </Lesson>)
-    })
-  }
-  saturdayClasses(){
-    var saturday = this.state.lessons.filter(function(data, i){
-      return data.dayOfTheWeek === 'Saturday'
-    })
-    return saturday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
+  deleteLesson(id){
+    const token = localStorage.getItem('jwtToken');
+
+    axios.delete('http://localhost:1234/lessons/delete/'+ id, { headers : { Authorization: `Bearer ${token}`}})
+      .then(res =>{
+        console.log('Lesson Deleted',id);
+      })
+      .catch(function(err){
+        console.log('errror deleting lesson', err);
+      })
+
+    this.setState((prevState) => {
+      const newLessonList = prevState.lessons.filter((lesson) => lesson._id !== id);
+      return newLessonList
     })
   }
-  sundayClasses(){
-    var sunday = this.state.lessons.filter(function(data, i){
-      return data.dayOfTheWeek === 'Sunday'
-    })
-    return sunday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
-    })
-  }
+
+
   mondayClasses(){
     var monday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Monday'
     })
     return monday.map(function(data, i){
-      return (
-        <Lesson lesson={data} key={i}>
-          <button className="btn btn-danger" onClick={this.deleteLesson}>Delete</button>
-        </Lesson>)
-    })
+      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
   }
   tuesdayClasses(){
     var tuesday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Tuesday'
     })
     return tuesday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
-    })
+      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
   }
   wednesdayClasses(){
     var wednesday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Wednesday'
     })
     return wednesday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
-    })
+      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
   }
   thursdayClasses(){
     var thursday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Thursday'
     })
     return thursday.map(function(data, i){
-      return <Lesson lesson={data} key={i}></Lesson>
+      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
+  }
+  fridayClasses(){
+    var friday = this.state.lessons.filter(function(data, i){
+      return data.dayOfTheWeek === 'Friday'
     })
+    return friday.map(function(data, i){
+      return(<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
+  }
+  saturdayClasses(){
+    var saturday = this.state.lessons.filter(function(data, i){
+      return data.dayOfTheWeek === 'Saturday'
+    })
+    return saturday.map(function(data, i){
+      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
+  }
+  sundayClasses(){
+    var sunday = this.state.lessons.filter(function(data, i){
+      return data.dayOfTheWeek === 'Sunday'
+    })
+    return sunday.map(function(data, i){
+      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+    }.bind(this))
   }
 
 
   render(){
     return (
       <div>
-        <div className="hero-info-img">
-          <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-          <p className="hero-img-text">Teaches Yoga</p>
+        <div>
+          <div className="hero-info-img">
+            <div className="hero-info-overlay"></div>
+            <div className="hero-img-text-container">
+              <p className="hero-img-text">Emily Thomson</p>
+              <p className="hero-img-text">Yoga Teacher</p>
+            </div>
+          </div>
         </div>
         <div className="page-container">
-          <h3>Class List</h3>
+          <h3 className="page-heading">Class List</h3>
           <table className="table" style={{ marginTop : 20 }}>
             <thead>
               <tr>

@@ -5,6 +5,7 @@ export const Contact = (props) => {
   return (
     <div>
       <div className="hero-info-img">
+        <div className="hero-info-overlay"></div>
         <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
         <p className="hero-img-text">Teaches Yoga</p>
       </div>

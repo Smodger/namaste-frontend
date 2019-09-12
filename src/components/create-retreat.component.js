@@ -101,7 +101,7 @@ export default class CreateRetreat extends Component {
       bookingUrl : this.state.bookingUrl,
       whatsIncluded : this.state.whatsIncluded
     }
-    
+
     const token = localStorage.getItem('jwtToken');
 
     axios.post('http://localhost:1234/retreats/addRetreat', newRetreat, {
@@ -128,6 +128,7 @@ export default class CreateRetreat extends Component {
     return (
       <div>
         <div className="hero-info-img">
+          <div className="hero-info-overlay"></div>
           <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
           <p className="hero-img-text">Teaches Yoga</p>
         </div>
