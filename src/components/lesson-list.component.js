@@ -39,11 +39,8 @@ export default class LessonList extends Component {
       .catch(function(err){
         console.log('errror deleting lesson', err);
       })
-
-    this.setState((prevState) => {
-      const newLessonList = prevState.lessons.filter((lesson) => lesson._id !== id);
-      return newLessonList
-    })
+      
+      window.location.reload();
   }
 
 

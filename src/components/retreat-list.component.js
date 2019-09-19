@@ -1,30 +1,19 @@
 import React , { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import ShowRetreat from './show-retreat.component';
-
-const Retreat = props => (
-  <Router>
-    <Link to={'/retreats/' + props.retreat._id}>
-      <div style={{ padding: 20, display: "inline-block"}}>
-        <div className="retreat-thumbnail"></div>
-        <div className="retreat-text">
-          <p>{props.retreat.name}</p>
-          <p>{props.retreat.dateStart} - {props.retreat.dateEnd}</p>
-        </div>
-      </div>
-    </Link>
-  </Router>
-
-)
+import Retreat from './retreat-overview.component';
 
 export default class ListRetreats extends Component {
   constructor(props){
     super(props)
 
+    this.toggleView = this.toggleView.bind(this)
+
     this.state = {
-      retreats : []
+      retreats : [],
+      showRetreatDetails : false,
+      retreatId : ""
     }
   }
 
@@ -42,16 +31,35 @@ export default class ListRetreats extends Component {
       })
   }
 
-  retreatList(){
-    return this.state.retreats.map(function(currentRetreat, i){
-      return <Retreat retreat={currentRetreat} key={i}></Retreat>
-    });
+  toggleView(retreat){
+    if(this.state.showRetreatDetails){
+      this.setState({
+        showRetreatDetails : false,
+        retreatId : ""
+      })
+    }
+
+    if(!this.state.showRetreatDetails){
+      this.setState({
+        showRetreatDetails : true,
+        retreat : retreat
+      })
+    }
   }
 
+  retreatList(){
+    return this.state.retreats.map(function(currentRetreat, i){
+      return <Retreat retreat={currentRetreat} key={i} onClick={(() => this.toggleView(currentRetreat))}></Retreat>
+    }, this);
+  }
+
+  retreatDetails(){
+    return <ShowRetreat  retreat={this.state.retreat} onClick={this.toggleView}></ShowRetreat>
+  }
 
   render(){
-    return (
-      <Router>
+    if(!this.state.showRetreatDetails){
+      return (
         <div>
           <div className="hero-info-img">
             <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
@@ -62,9 +70,21 @@ export default class ListRetreats extends Component {
             { this.retreatList() }
           </div>
         </div>
-        <Route path="/retreats/:id" exact component={ShowRetreat}></Route>
-      </Router>
+      )
+    }
 
-    )
+    if(this.state.showRetreatDetails){
+      return (
+        <div>
+          <div className="hero-info-img">
+            <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
+            <p className="hero-img-text">Teaches Yoga</p>
+          </div>
+          <div>
+            { this.retreatDetails() }
+          </div>
+        </div>
+      )
+    }
   }
 }

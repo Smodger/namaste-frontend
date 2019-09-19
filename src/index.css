@@ -1,15 +1,11 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  font-family: 'Accidental Presidency', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 p{
@@ -24,6 +20,14 @@ p{
 }
 .inline{
   display: inline!important;
+}
+
+.separator{
+  border-top: 1px solid #808080;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .navbar{
@@ -82,6 +86,14 @@ p{
   width: 50%;
   margin: auto;
   margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  grid-gap: 20px;
+}
+
+.bla {
+
 }
 
 .social-media-icons > a{

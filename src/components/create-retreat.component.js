@@ -176,12 +176,12 @@ export default class CreateRetreat extends Component {
               </div>
 
               <div className="form-group">
-                <label>Booking information link (must be full url)</label>
+                <label>Booking information link (must be full url). Leave blank if you want them to email you</label>
                 <input type="text" className="form-control" value={this.state.bookingUrl} onChange={this.onChangeBookingInfoUrl}></input>
               </div>
 
               <div className="form-group">
-                <label>What's included in the cost</label>
+                <label>What's included in the cost. <strong>Separate all values by commas.</strong> Eg food, wine, car parking, pringles</label>
                 <input type="text" className="form-control" value={this.state.whatsIncluded} onChange={this.onChangeWhatIncluded}></input>
               </div>
 
