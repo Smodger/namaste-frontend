@@ -1,32 +1,45 @@
 import React from 'react';
+import { SocialIcon } from 'react-social-icons';
+import { Images } from './images.component'
 
 export const About = (props) => {
   return(
     <div>
       <div className="hero-info-img">
         <div className="hero-info-overlay"></div>
-        <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-        <p className="hero-img-text">Teaches Yoga</p>
+        <div className="hero-landing-text-container">
+          <p className="hero-img-text">Emily Thomson</p>
+          <p className="hero-img-subtext">Yoga teacher</p>
+        </div>
       </div>
       <div className="page-container">
-        <h3>About Me</h3>
-        <p>TAKEN FROM CURRENT SITE</p>
-        <p style={{"marginTop":15}}>I was first introduced to yoga and movement work whilst training at drama school to be an actor. I found yoga a fab way of warming up, and getting my body, brain and breath ready to rehearse. But soon it started trickling into my life in general and I was practicing every day - so I thought it was about time I trained and started teaching too!</p>
+        <h3 className="page-heading">Who the hell is Em Thomson?</h3>
 
-        <p style={{"marginTop":15}}>I trained at Sampoorna Yoga in South Goa, India, and have returned there for an internship to further my training and practice. I have also attended workshops in anatomy, and later this year will be completing my 500 hour advanced teacher training with Jason Crandell.</p>
+        <p style={{"marginTop":15}}>Em was first introduced to yoga and movement work whilst training at the Guildhall drama school to be an actor, but it soon started trickling bit by bit into her life until she was practicing every day and loving it! Thus she became a yoga teacher.</p>
 
-        <p>{"I love yoga because it is accessible to all and it is a practical way to see how we each develop in our own special ways. Some people will be awesome at backbends, others rock at arm balances whilst some are wizards of the mind and meditation. It's like everyone's their own special kind of superhero, you just need to take the time to see it – which kind are you?"}</p>
+        <p style={{"marginTop":15}}>Em loves yoga because she believes it is accessible to all and is a practical way to see how we each develop in our own special ways. Some people will be awesome at backbends, others rock at arm balances whilst some are wizards of the mind and meditation. It&#39;s like everyone&#39;s their own special kind of superhero, you just need to take the time to see it – which kind are you?</p>
 
-        <p style={{"marginTop":15}}>Trained primarily in vinyasa and ashtanga - my classes have a strong focus on movement and flow. Expect a strong class, often with long creative sequences and occasional 360 mandala-style rotations around the mat. And of course a fair amount of sweat.</p>
+        <p style={{"marignTop":15}}>Em trained at Sampoorna Yoga in South Goa, India, and she has since returned for an internship to further training and practice. She has also attended many workshops in anatomy, specific courses on teaching beginners and is currently completing her 500 hour advanced teacher training with Jason Crandell. </p>
 
-        <ul style={{"marginTop":15}}>
-          <li>I teach a number of regular weekly classes around London and am also available for one-to-one private sessios, group classes, corporate hire.</li>
-          <li>Available to teach Vinyasa Flow, Ashtanga, Hatha, Core Power flow.</li>
-          <li>Fully accredited and insured by Yoga Alliance UK.</li>
-          <li><img style={{ 'height' : 50, 'width' : 50 }} alt="Yoga alliance logo" src={require("../images/yoga-alliance-logo.png")}></img></li>
-        </ul>
+        <p style={{"marginTop":15}}>In terms of style, Em is primarily trained in vinyasa and ashtanga, with a precise physical and functional approach to yoga. She pays close attention to detailed alignment and muscular engagement, whilst still maintaining creativity within her sequences. Her classes usually feature strong flows, with a fun energetic vibe and encouraging atmosphere. Don&#39;t be surprised to end up facing different directions on the mat, and expect a fair amount of sweat.</p>
+
+        <p style={{"marginTop":15}}>On rare occasions there&#39;s a potential shoulder massage up for grabs whilst gentle trumpets serenade you in svasana. And if you hear folk music coming from the studio it&#39;s probably her class. </p>
+
+        <p style={{"marginTop":50}}>Yoga playlists available to follow @emily.celine on Spotify. They&#39;ll be named something boring like &#34;ordered folk, lyricless yoga 6&#34;.</p>
+
+        <div style={{"marginTop":15}}>
+          <span className="social-media-icons"><SocialIcon url="http://facebook.com/emthomsonyoga"></SocialIcon></span>
+          <span className="social-media-icons"><SocialIcon url="https://www.instagram.com/em_c_thomson/?hl=en"></SocialIcon></span>
+        </div>
+
+        <p style={{"marginTop":50}}>Em teaches primarily in south London. She has a regular weekly schedule of public classes and is available for private/corporate classes.</p>
+
+        <p style={{"marginTop":15}}>Available to teach Vinyasa Flow, Ashtanga, Hatha, Dynamic, Core Power flow, Dance Flow.</p>
+
+        <p style={{"marginTop":15}}>Get yourself engaged with the present moment - stretch, breathe and clear the mind.</p>
 
       </div>
+      <Images></Images>
     </div>
   );
 }

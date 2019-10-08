@@ -13,18 +13,45 @@ import ListRetreats from './retreat-list.component';
 import Signup from './signup.component'
 
 export default class Header extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      token : null
+    }
+  }
+
+  componentWillMount(){
+    const token = localStorage.hasOwnProperty('jwtToken');
+    this.setState({
+      token : token
+    })
+  }
+
+  isLoggedIn(){
+    if(this.state.token){
+      return (
+        <div>
+          <Link to='/create-retreat' className='navbar-brand'>Create Retreat</Link>
+          <Link to='/create-lesson' className='navbar-brand'>Create Lesson</Link>
+        </div>
+      )
+    }
+  }
+
   render(){
     return (
       <Router>
         <div>
           <nav className="navbar navbar-expand-lg">
+            <div className="header-logo"></div>
             <Link to='/' className='navbar-brand'>Home</Link>
             <Link to='/lessons' className='navbar-brand'>Lesson List</Link>
-            <Link to='/create-lesson' className='navbar-brand'>Create Lesson</Link>
             <Link to='/about' className='navbar-brand'>About Me</Link>
             <Link to='/contact' className='navbar-brand'>Contact</Link>
-            <Link to='/create-retreat' className='navbar-brand'>Create Retreat</Link>
             <Link to='/list-retreats' className='navbar-brand'>Show Retreats</Link>
+            {this.isLoggedIn()}
           </nav>
         </div>
 

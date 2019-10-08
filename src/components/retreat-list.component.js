@@ -62,8 +62,11 @@ export default class ListRetreats extends Component {
       return (
         <div>
           <div className="hero-info-img">
-            <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-            <p className="hero-img-text">Teaches Yoga</p>
+            <div className="hero-info-overlay"></div>
+            <div className="hero-landing-text-container">
+              <p className="hero-img-text">Emily Thomson</p>
+              <p className="hero-img-subtext">Yoga teacher</p>
+            </div>
           </div>
           <div className="all-retreats-container">
             <h3>Yoga retreats</h3>
@@ -77,8 +80,11 @@ export default class ListRetreats extends Component {
       return (
         <div>
           <div className="hero-info-img">
-            <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-            <p className="hero-img-text">Teaches Yoga</p>
+            <div className="hero-info-overlay"></div>
+            <div className="hero-landing-text-container">
+              <p className="hero-img-text">Emily Thomson</p>
+              <p className="hero-img-subtext">Yoga teacher</p>
+            </div>
           </div>
           <div>
             { this.retreatDetails() }

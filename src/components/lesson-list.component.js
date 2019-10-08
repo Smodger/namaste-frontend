@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Lesson from './lesson.component'
+import {Images} from './images.component'
 
 export default class LessonList extends Component {
 
@@ -39,7 +40,7 @@ export default class LessonList extends Component {
       .catch(function(err){
         console.log('errror deleting lesson', err);
       })
-      
+
       window.location.reload();
   }
 
@@ -48,59 +49,106 @@ export default class LessonList extends Component {
     var monday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Monday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    monday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return monday.map(function(data, i){
-      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return (<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
+
   tuesdayClasses(){
     var tuesday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Tuesday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    tuesday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return tuesday.map(function(data, i){
-      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return (<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
+
   wednesdayClasses(){
     var wednesday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Wednesday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    wednesday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return wednesday.map(function(data, i){
-      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return (<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
+
   thursdayClasses(){
     var thursday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Thursday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    thursday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return thursday.map(function(data, i){
-      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return (<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
+
   fridayClasses(){
     var friday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Friday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    friday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return friday.map(function(data, i){
-      return(<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return(<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
+
   saturdayClasses(){
     var saturday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Saturday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    saturday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return saturday.map(function(data, i){
-      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return (<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
+
   sundayClasses(){
     var sunday = this.state.lessons.filter(function(data, i){
       return data.dayOfTheWeek === 'Sunday'
     })
+    //sort by start hour to put earlier classes higher up the list
+    sunday.sort(function(a,b){
+      return a.startHour - b.startHour
+    })
+
     return sunday.map(function(data, i){
-      return (<Lesson lesson={data} key={i} deleteLesson={this.deleteLesson}></Lesson>)
+      let iteration = i;
+      return (<Lesson lesson={data} count={iteration} key={i} deleteLesson={this.deleteLesson}></Lesson>)
     }.bind(this))
   }
-
 
   render(){
     return (
@@ -108,22 +156,21 @@ export default class LessonList extends Component {
         <div>
           <div className="hero-info-img">
             <div className="hero-info-overlay"></div>
-            <div className="hero-img-text-container">
+            <div className="hero-landing-text-container">
               <p className="hero-img-text">Emily Thomson</p>
-              <p className="hero-img-text">Yoga Teacher</p>
+              <p className="hero-img-subtext">Yoga teacher</p>
             </div>
           </div>
         </div>
         <div className="page-container">
           <h3 className="page-heading">Class List</h3>
-          <table className="table" style={{ marginTop : 20 }}>
+          <table className="table boarderless" style={{ marginTop : 20 }}>
             <thead>
               <tr>
                 <th>Day of the Week</th>
                 <th>Time</th>
                 <th>Location</th>
                 <th>Yoga Style</th>
-                <th>Link to yoga studio</th>
                 <th></th>
               </tr>
             </thead>
@@ -138,6 +185,8 @@ export default class LessonList extends Component {
             </tbody>
           </table>
         </div>
+        <Images></Images>
+
       </div>
     )
   }

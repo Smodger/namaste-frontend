@@ -1,16 +1,19 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
+import { Images } from './images.component'
 
 export const Contact = (props) => {
   return (
     <div>
       <div className="hero-info-img">
         <div className="hero-info-overlay"></div>
-        <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-        <p className="hero-img-text">Teaches Yoga</p>
+        <div className="hero-landing-text-container">
+          <p className="hero-img-text">Emily Thomson</p>
+          <p className="hero-img-subtext">Yoga teacher</p>
+        </div>
       </div>
-      <div className="page-container">
-        <h3>Contact</h3>
+      <div className="page-container" style={{ 'text-align': 'center' }}>
+        <h3 className="page-heading">Contact</h3>
         <p>For any enquiries please contact me at: <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a>.</p>
         <p>Or check out my social media!</p>
         <div>
@@ -20,7 +23,8 @@ export const Contact = (props) => {
         <p>Also available for private classes, group hire or corporate events - basically if you want yoga let's chat</p>
       </div>
       <div className="contact-logo"></div>
-    </div>
 
+      <Images></Images>
+    </div>
   )
 }

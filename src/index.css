@@ -2,13 +2,17 @@
   font-family: 'Accidental Presidency', sans-serif;
 }
 
+/* #root {
+  background-color: rgba(14, 55, 130,0.5);
+} */
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-p{
+.no-margin{
   margin: 0!important;
 }
 
@@ -43,10 +47,13 @@ p{
   color: #ed1a64;
 }
 
+.hover-pink:hover{
+  color: #ed1a64;
+}
+
 .page-heading{
   text-align: center;
   font-size: 40px;
-  color: #ed1a64;
 }
 
 .hero-landing-img{
@@ -60,7 +67,7 @@ p{
 
 .hero-landing-overlay{
   height: 90vh;
-  background-color: rgba(14, 55, 130,0.15)
+  background-color: rgba(14, 55, 130,0.37)
 }
 
 .hero-info-img{
@@ -68,32 +75,26 @@ p{
   background: url('./images/landing.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: 100% 54%;
   position: relative;
 }
 
 .hero-info-overlay{
   height: 80vh;
-  background-color: rgba(14, 55, 130,0.15)
+  background-color: rgba(14, 55, 130,0.37)
 }
 
 .page-container{
   width: 80%;
   margin: auto;
   margin-top: 20px;
+  color: black;
 }
 
 .all-retreats-container{
   width: 50%;
   margin: auto;
   margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  grid-gap: 20px;
-}
-
-.bla {
-
 }
 
 .social-media-icons > a{
@@ -102,31 +103,30 @@ p{
   margin-right: 10px;
 }
 
-.hero-img-text-container{
-  text-align: center;
-  color: #ed1a64;
-  font-size: 50px;
+.hero-landing-text-container{
+  color: #ffffff;
   position: absolute;
-  bottom: 60%;
-  right: 30%;
+  bottom: 3%;
+  right: 16%;
 }
 
-.hero-landing-text-container{
-  text-align: center;
-  color: #ed1a64;
-  font-size: 50px;
-  position: absolute;
-  bottom: 70%;
-  right: 20%;
+.hero-img-text{
+  display: inline-block;
+  font-size: 75px
+}
+.hero-img-subtext{
+  display: inline-block;
+  font-size: 30px;
+  margin-left: 35px;
 }
 
 .contact-logo{
   background-position: center;
   background-size: contain;
-  height: 100px;
+  height: 200px;
   margin: auto;
   background-image: url('./images/em-thomson-logo.jpg');
-  width: 100px;
+  width: 200px;
   background-repeat: no-repeat;
 }
 
@@ -143,4 +143,29 @@ p{
 .retreat-text{
   padding: 20px;
   float: right;
+}
+
+.header-logo{
+  display: inline-block;
+  margin-right: 20px;
+  background-position: center;
+  background-size: contain;
+  height: 50px;
+  background-image: url(/static/media/em-thomson-logo.d0644399.jpg);
+  width: 50px;
+  background-repeat: no-repeat
+}
+
+.image-container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  min-height: 200px;
+  margin-top: 75px;
+  margin-bottom: 20px;
+}
+
+.stock-image {
+  margin: 0 15px;
+  width: 400px;
 }

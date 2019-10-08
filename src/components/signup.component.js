@@ -12,8 +12,7 @@ export default class Signup extends Component {
 
     this.state = {
       email : "",
-      password : "",
-      hasToken : ""
+      password : ""
     }
   }
 
@@ -33,7 +32,6 @@ export default class Signup extends Component {
     //prevent default form logic
     event.preventDefault();
 
-    console.log("Submit form : ", this.state)
     const newUser = {
       email : this.state.email,
       password : this.state.password
@@ -52,8 +50,11 @@ export default class Signup extends Component {
     return (
       <div>
         <div className="hero-info-img">
-          <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-          <p className="hero-img-text">Teaches Yoga</p>
+          <div className="hero-info-overlay"></div>
+          <div className="hero-landing-text-container">
+            <p className="hero-img-text">Emily Thomson</p>
+            <p className="hero-img-subtext">Yoga teacher</p>
+          </div>
         </div>
         <div className="page-container">
           <h3>Sign up</h3>
@@ -66,11 +67,9 @@ export default class Signup extends Component {
               <label>Password</label>
               <input type="text" className="form-control" value={this.state.password} onChange={this.onChangePwd}></input>
             </div>
-
             <div className="form-group">
               <input type="submit" value="Sign in" className="btn btn-primary"></input>
             </div>
-
           </form>
         </div>
       </div>

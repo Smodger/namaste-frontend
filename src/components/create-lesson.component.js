@@ -99,8 +99,10 @@ export default class CreateLesson extends Component {
       <div>
         <div className="hero-info-img">
           <div className="hero-info-overlay"></div>
-          <p style={{ "color" : '#ffffff'}}>Emily Thomson</p>
-          <p className="hero-img-text">Teaches Yoga</p>
+          <div className="hero-landing-text-container">
+            <p className="hero-img-text">Emily Thomson</p>
+            <p className="hero-img-subtext">Yoga teacher</p>
+          </div>
         </div>
         <div className="page-container">
           <h3>Create Class</h3>

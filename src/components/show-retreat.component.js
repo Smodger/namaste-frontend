@@ -35,7 +35,7 @@ export default class showRetreat extends Component {
         <h6>How to get there</h6>
         <p>By car:</p>
         <p>{this.props.retreat.byCar}</p>
-        <p>By train:</p>
+        <p>Other transport</p>
         <p>{this.props.retreat.byTrain}</p>
 
         <div>ADD HOUSING STUFF</div>

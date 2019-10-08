@@ -8,7 +8,29 @@ export default class Lesson extends Component {
 
     this.state = {
       lesson : props.lesson,
+      count : props.count,
+      token : null
+    }
+  }
 
+  componentWillMount(){
+    const token = localStorage.hasOwnProperty('jwtToken')
+    this.setState({
+      token : token
+    })
+  }
+
+  isLoggedIn(){
+    if(this.state.token){
+      return(
+        <td>
+          <Link to={"/edit/" + this.state.lesson._id}>Edit</Link>
+          <button className="btn btn-danger" onClick={this.handleDeleteLesson}>Delete</button>
+        </td>
+      )
+    }
+    else{
+      return
     }
   }
 
@@ -16,18 +38,33 @@ export default class Lesson extends Component {
     this.props.deleteLesson(this.state.lesson._id)
   }
 
+  tootingInfo(){
+    if(this.state.lesson.location === 'Tooting Bec Lido'){
+      return <td>{this.state.lesson.linkToStudio}</td>
+    }
+    else{
+      return <td></td>
+    }
+  }
+
+  dayHeader(){
+    if(this.state.count === 0){
+      return <td>{this.state.lesson.dayOfTheWeek}</td>
+    }
+    else {
+      return <td></td>
+    }
+  }
+
   render(){
     return (
       <tr>
-        <td>{this.state.lesson.dayOfTheWeek}</td>
+        {this.dayHeader()}
         <td>{this.state.lesson.startHour} : {this.state.lesson.startMinutes}</td>
-        <td>{this.state.lesson.location}</td>
+        <td><a className="hover-pink" href={'//'+this.state.lesson.linkToStudio} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
         <td>{this.state.lesson.yogaStyle}</td>
-        <td>{this.state.lesson.linkToStudio}</td>
-        <td>
-          <Link to={"/edit/" + this.state.lesson._id}>Edit</Link>
-          <button className="btn btn-danger" onClick={this.handleDeleteLesson}>Delete</button>
-        </td>
+        {this.tootingInfo()}
+        {this.isLoggedIn()}
       </tr>
     )
   }
