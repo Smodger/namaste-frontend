@@ -64,7 +64,7 @@ export default class ListRetreats extends Component {
           <div className="hero-info-img">
             <div className="hero-info-overlay"></div>
             <div className="hero-landing-text-container">
-              <p className="hero-img-text">Emily Thomson</p>
+              <p className="hero-img-text">Em Thomson</p>
               <p className="hero-img-subtext">Yoga teacher</p>
             </div>
           </div>
