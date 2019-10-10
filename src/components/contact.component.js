@@ -12,7 +12,7 @@ export const Contact = (props) => {
           <p className="hero-img-subtext">Yoga teacher</p>
         </div>
       </div>
-      <div className="page-container" style={{ 'text-align': 'center' }}>
+      <div className="page-container" style={{ 'textAlign': 'center' }}>
         <h3 className="page-heading">Contact</h3>
         <p>For any enquiries please contact me at: <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a>.</p>
         <p>Or check out my social media!</p>
@@ -20,7 +20,7 @@ export const Contact = (props) => {
           <span className="social-media-icons"><SocialIcon url="http://facebook.com/emthomsonyoga"></SocialIcon></span>
           <span className="social-media-icons"><SocialIcon url="https://www.instagram.com/em_c_thomson/?hl=en"></SocialIcon></span>
         </div>
-        <p>Also available for private classes, group hire or corporate events - basically if you want yoga let's chat</p>
+        <p style={{ 'marginTop': 16 }}>Also available for private classes, group hire or corporate events - basically if you want yoga let's chat</p>
       </div>
       <div className="contact-logo"></div>
 

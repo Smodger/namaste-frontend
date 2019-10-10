@@ -11,6 +11,7 @@ import Home from './home.component';
 import CreateRetreat from './create-retreat.component';
 import ListRetreats from './retreat-list.component';
 import Signup from './signup.component'
+import Login from './login.component'
 
 export default class Header extends Component {
 
@@ -64,6 +65,7 @@ export default class Header extends Component {
         <Route path="/create-retreat" component={CreateRetreat}></Route>
         <Route path="/list-retreats" component={ListRetreats}></Route>
         <Route path="/signup" component={Signup}></Route>
+        <Route path="/login" component={Login}></Route>
 
       </Router>
     )
