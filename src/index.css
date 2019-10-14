@@ -26,12 +26,20 @@ body {
   display: inline!important;
 }
 
+.text-center{
+  text-align: center;
+}
+
 .separator{
   border-top: 1px solid #808080;
   width: 90%;
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px auto;
+}
+
+.separator-long{
+  border-top: 1px dashed #808080;
+  width: 100%;
+  margin: 40px auto;
 }
 
 .navbar{

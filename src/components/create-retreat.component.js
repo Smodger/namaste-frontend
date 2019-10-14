@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Bedroom from './bedroom.component'
 
 export default class CreateRetreat extends Component {
 
@@ -17,13 +18,23 @@ export default class CreateRetreat extends Component {
     this.onChangeBookingInfoDetails = this.onChangeBookingInfoDetails.bind(this);
     this.onChangeBookingInfoUrl = this.onChangeBookingInfoUrl.bind(this);
     this.onChangeWhatIncluded = this.onChangeWhatIncluded.bind(this);
+    this.onChangeBedDescription = this.onChangeBedDescription.bind(this);
+    this.onChangeBedCost = this.onChangeBedCost.bind(this);
+    this.onChangeBedBooking = this.onChangeBedBooking.bind(this);
+    this.onChangeAccomodation = this.onChangeAccomodation.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
+    this.appendBedroom = this.appendBedroom.bind(this);
+    this.renderBedroom = this.renderBedroom.bind(this);
+
     this.state= {
+      children :[],
       name : "",
       dateStart : "22/04/1989",
       dateEnd : "14/09/1988",
       retreatSummary : "",
+      accomodationOverview : "",
+      bedRooms : [],
       food : "",
       byCar : "",
       byTrain : "",
@@ -84,6 +95,51 @@ export default class CreateRetreat extends Component {
     })
   }
 
+  onChangeAccomodation(event){
+    this.setState({
+      accomodationOverview : event.target.value
+    })
+  }
+
+  onChangeBedDescription(desc){
+    const newBedroom = {...this.state.bedRooms};
+
+    newBedroom.description = desc;
+
+    this.setState({bedRooms : newBedroom});
+  }
+  onChangeBedCost(cost){
+    const newBedroom = {...this.state.bedRooms};
+
+    newBedroom.costPerPerson = cost;
+
+    this.setState({bedRooms : newBedroom});
+  }
+  onChangeBedBooking(booked){
+    const newBedroom = {...this.state.bedRooms};
+
+    newBedroom.booked = booked;
+
+    this.setState({bedRooms : newBedroom});
+  }
+
+  appendBedroom(event){
+    event.preventDefault();
+    let newRoom = { ...this.state.bedRooms };
+    this.setState({
+      bedRooms : [...this.state.bedRooms, newRoom]
+    })
+  }
+  
+  //will refactor bedroom component to just send room and functions.
+  renderBedroom(){
+    console.log('info', Array.isArray(this.state.bedRooms), this.state.bedRooms);
+    return this.state.bedRooms.map(function(room, i){
+      return <Bedroom key={i} roomNum={this.state.bedRooms.length} description={this.state.bedRooms.description} cost={this.state.bedRooms.costPerPerson} booked={this.state.bedRooms.booked} onChangeBedDescription={this.onChangeBedDescription} onChangeBedCost={this.onChangeBedCost} onChangeBedBooking={this.onChangeBedBooking}></Bedroom>
+    }, this)
+  }
+
+
   onSubmit(event){
     //prevent default form logic
     event.preventDefault();
@@ -94,6 +150,12 @@ export default class CreateRetreat extends Component {
       dateStart : this.state.dateStart,
       dateEnd : this.state.dateEnd,
       retreatSummary : this.state.retreatSummary,
+      accomodationOverview : this.state.accomodationOverview,
+      bedRooms : [{
+        booked : this.state.bedRooms.booked,
+        description : this.state.bedRooms.description,
+        costPerPerson : this.state.bedRooms.costPerPerson
+      }],
       food : this.state.food,
       byCar : this.state.byCar,
       byTrain : this.state.byTrain,
@@ -115,6 +177,8 @@ export default class CreateRetreat extends Component {
       dateStart : "22/04/1989",
       dateEnd : "14/09/1988",
       retreatSummary : "",
+      accomodationOverview : "",
+      bedRooms : [],
       food : "",
       byCar : "",
       byTrain : "",
@@ -137,6 +201,7 @@ export default class CreateRetreat extends Component {
         <div className="page-container">
           <h3>Create a retreat</h3>
             <form onSubmit={this.onSubmit}>
+
               <div className="form-group">
                 <label>Retreat Name</label>
                 <input type="text" className="form-control" value={this.state.name} onChange={this.onChangeName}></input>
@@ -155,6 +220,21 @@ export default class CreateRetreat extends Component {
               <div className="form-group">
                 <label>Retreat summary</label>
                 <input type="text" className="form-control" value={this.state.retreatSummary} onChange={this.onChangeRetreatSummary}></input>
+              </div>
+
+              <div className="form-group">
+                <label>Accommodation Overview</label>
+                <input type="text" className="form-control" value={this.state.accomodationOverview} onChange={this.onChangeAccomodation}></input>
+              </div>
+
+              <div className="separator-long"></div>
+
+              <div className="bedroom-container">
+                {  this.renderBedroom() }
+              </div>
+
+              <div className="text-center">
+                <button className="btn-primary" onClick={this.appendBedroom}>Add bedroom</button>
               </div>
 
               <div className="form-group">
