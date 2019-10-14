@@ -103,7 +103,8 @@ export default class CreateRetreat extends Component {
 
   onChangeBedDescription(desc){
     const newBedroom = {...this.state.bedRooms};
-
+    // A PROBELM IS THAT THIS IS COMING THROUGH AS UNDEFINED.
+    console.log('Value of input passed from bedroom.component :', desc);
     newBedroom.description = desc;
 
     this.setState({bedRooms : newBedroom});
@@ -130,15 +131,22 @@ export default class CreateRetreat extends Component {
       bedRooms : [...this.state.bedRooms, newRoom]
     })
   }
-  
+
   //will refactor bedroom component to just send room and functions.
   renderBedroom(){
+    // THIS STARTS OFF AS EXPECTED. Render the bedroom component on click and you see.
+    // this.state.bedRooms : [{}]
+    // When user types in to description input in bedroom component
+    // the Array.isArray becomes false and this.state.bedRooms
+    // becomes object, { 0 : {}, description : "" }
+    // WHAT I WANT this.state.bedRooms :
+    //[{description : "hello", cost : 10, booked : false}, {description: "bye", cost : 11, booked : true}]
     console.log('info', Array.isArray(this.state.bedRooms), this.state.bedRooms);
+
     return this.state.bedRooms.map(function(room, i){
       return <Bedroom key={i} roomNum={this.state.bedRooms.length} description={this.state.bedRooms.description} cost={this.state.bedRooms.costPerPerson} booked={this.state.bedRooms.booked} onChangeBedDescription={this.onChangeBedDescription} onChangeBedCost={this.onChangeBedCost} onChangeBedBooking={this.onChangeBedBooking}></Bedroom>
     }, this)
   }
-
 
   onSubmit(event){
     //prevent default form logic
