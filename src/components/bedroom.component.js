@@ -7,43 +7,36 @@ export default class Bedroom extends Component {
     this.handleOnChangeDescription = this.handleOnChangeDescription.bind(this);
     this.handleOnChangeCost = this.handleOnChangeCost.bind(this);
     this.handleOnChangeBooked = this.handleOnChangeBooked.bind(this);
-
-    this.state = {
-      roomNum : props.roomNum,
-      description : props.description,
-      cost : props.costPerPerson,
-      booked : props.booked
-    }
   }
 
-  handleOnChangeDescription = (event) => {
-    this.props.onChangeBedDescription(this.state.description)
+  handleOnChangeDescription = (event) => {;
+    this.props.onChangeBedDescription(event.target.value)
   }
 
   handleOnChangeCost = (event) => {
-    this.props.onChangeBedCost(this.state.cost)
+    this.props.onChangeBedCost(event.target.value)
   }
 
   handleOnChangeBooked = (event) => {
-    this.props.onChangeBedBooking(this.state.booked)
+    this.props.onChangeBedBooking(event.target.checked)
   }
 
   render(){
     return (
       <div>
         <div className="form-group">
-          <h4>Bedroom {this.state.roomNum}</h4>
+          <h4>Bedroom {this.props.roomNum + 1}</h4>
           <label>Description</label>
-          <input type="text" className="form-control" value={this.state.description} onChange={this.handleOnChangeDescription} placeholder="description"></input>
+          <input type="text" className="form-control" value={this.props.room.description} onChange={this.handleOnChangeDescription} placeholder="description"></input>
         </div>
 
         <div className="form-group">
           <label>Cost</label>
-          <input type="number" className="form-control" value={this.state.cost} onChange={this.handleOnChangeCost}></input>
+          <input type="number" className="form-control" value={this.props.room.cost} onChange={this.handleOnChangeCost}></input>
         </div>
 
         <div className="custom-control custom-switch">
-          <input type="checkbox" className="custom-control-input" id="booked-room" value={this.state.booked}  onClick={this.handleOnChangeBooked}/>
+          <input type="checkbox" className="custom-control-input" id="booked-room" value={this.props.room.booked}  onClick={this.handleOnChangeBooked}/>
           <label className="custom-control-label" htmlFor="booked-room">Booked</label>
         </div>
         <div className="separator-long"></div>

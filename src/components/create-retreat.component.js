@@ -101,50 +101,50 @@ export default class CreateRetreat extends Component {
     })
   }
 
-  onChangeBedDescription(desc){
-    const newBedroom = {...this.state.bedRooms};
-    // A PROBELM IS THAT THIS IS COMING THROUGH AS UNDEFINED.
-    console.log('Value of input passed from bedroom.component :', desc);
-    newBedroom.description = desc;
+  onChangeBedDescription(desc, i){
+    const newBedroom = {...this.state.bedRooms[i], description : desc };
 
-    this.setState({bedRooms : newBedroom});
+    let bedroomArray = this.state.bedRooms;
+    bedroomArray[i] = newBedroom;
+
+    this.setState({bedRooms : bedroomArray });
   }
-  onChangeBedCost(cost){
-    const newBedroom = {...this.state.bedRooms};
+  onChangeBedCost(cost, i){
+    const newBedroom = {...this.state.bedRooms[i], cost : cost };
 
-    newBedroom.costPerPerson = cost;
+    let bedroomArray = this.state.bedRooms;
+    bedroomArray[i] = newBedroom;
 
-    this.setState({bedRooms : newBedroom});
+    this.setState({bedRooms : bedroomArray });
   }
-  onChangeBedBooking(booked){
-    const newBedroom = {...this.state.bedRooms};
 
-    newBedroom.booked = booked;
+  onChangeBedBooking(booked, i){
+    const newBedroom = {...this.state.bedRooms[i], booked : booked };
+    console.log('booked', booked);
+    let bedroomArray = this.state.bedRooms;
+    bedroomArray[i] = newBedroom;
 
-    this.setState({bedRooms : newBedroom});
+    this.setState({bedRooms : bedroomArray });
   }
 
   appendBedroom(event){
     event.preventDefault();
-    let newRoom = { ...this.state.bedRooms };
+    let newRoom = {
+      description : "",
+      cost : 0,
+      booked : false
+    };
+
     this.setState({
       bedRooms : [...this.state.bedRooms, newRoom]
     })
   }
 
-  //will refactor bedroom component to just send room and functions.
   renderBedroom(){
-    // THIS STARTS OFF AS EXPECTED. Render the bedroom component on click and you see.
-    // this.state.bedRooms : [{}]
-    // When user types in to description input in bedroom component
-    // the Array.isArray becomes false and this.state.bedRooms
-    // becomes object, { 0 : {}, description : "" }
-    // WHAT I WANT this.state.bedRooms :
-    //[{description : "hello", cost : 10, booked : false}, {description: "bye", cost : 11, booked : true}]
-    console.log('info', Array.isArray(this.state.bedRooms), this.state.bedRooms);
-
     return this.state.bedRooms.map(function(room, i){
-      return <Bedroom key={i} roomNum={this.state.bedRooms.length} description={this.state.bedRooms.description} cost={this.state.bedRooms.costPerPerson} booked={this.state.bedRooms.booked} onChangeBedDescription={this.onChangeBedDescription} onChangeBedCost={this.onChangeBedCost} onChangeBedBooking={this.onChangeBedBooking}></Bedroom>
+      console.log('bedroom', this.state.bedRooms);
+
+      return <Bedroom key={i} roomNum={i} room={room} onChangeBedDescription={(desc) => this.onChangeBedDescription(desc, i)} onChangeBedCost={(cost) => this.onChangeBedCost(cost, i)} onChangeBedBooking={(booked) => this.onChangeBedBooking(booked, i)}></Bedroom>
     }, this)
   }
 
