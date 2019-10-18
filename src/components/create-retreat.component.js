@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Bedroom from './bedroom.component'
+import Bedroom from './bedroom.component';
 
 export default class CreateRetreat extends Component {
 
@@ -216,13 +216,13 @@ export default class CreateRetreat extends Component {
               </div>
 
               <div className="form-group">
-                <label>Start Date (DD/MM/YYYY)</label>
-                <input type="text" className="form-control" value={this.state.dateStart} onChange={this.onChangeStartDate}></input>
+                <label>Start Date eg(14/09/1988)</label>
+                <input type="date" className="form-control" value={this.state.dateStart} onChange={this.onChangeStartDate}></input>
               </div>
 
               <div className="form-group">
-                <label>End Date (DD/MM/YYYY)</label>
-                <input type="text" className="form-control" value={this.state.dateEnd} onChange={this.onChangeEndDate}></input>
+                <label>End Date eg(22/04/1990)</label>
+                <input type="date" className="form-control" value={this.state.dateEnd} onChange={this.onChangeEndDate}></input>
               </div>
 
               <div className="form-group">
