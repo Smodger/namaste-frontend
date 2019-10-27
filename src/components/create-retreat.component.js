@@ -18,6 +18,7 @@ export default class CreateRetreat extends Component {
     this.onChangeBookingInfoDetails = this.onChangeBookingInfoDetails.bind(this);
     this.onChangeBookingInfoUrl = this.onChangeBookingInfoUrl.bind(this);
     this.onChangeWhatIncluded = this.onChangeWhatIncluded.bind(this);
+    this.onChangeRetreatImage = this.onChangeRetreatImage.bind(this);
     this.onChangeBedDescription = this.onChangeBedDescription.bind(this);
     this.onChangeBedCost = this.onChangeBedCost.bind(this);
     this.onChangeBedBooking = this.onChangeBedBooking.bind(this);
@@ -28,7 +29,6 @@ export default class CreateRetreat extends Component {
     this.renderBedroom = this.renderBedroom.bind(this);
 
     this.state= {
-      children :[],
       name : "",
       dateStart : "22/04/1989",
       dateEnd : "14/09/1988",
@@ -40,7 +40,8 @@ export default class CreateRetreat extends Component {
       byTrain : "",
       bookingDetails : "",
       bookingUrl : "",
-      whatsIncluded : []
+      whatsIncluded : [],
+      retreatImage : null
     }
   }
 
@@ -101,6 +102,13 @@ export default class CreateRetreat extends Component {
     })
   }
 
+  onChangeRetreatImage(event){
+    console.log('e', event.target.files[0]);
+    this.setState({
+      retreatImage : event.target.files[0]
+    })
+  }
+
   onChangeBedDescription(desc, i){
     const newBedroom = {...this.state.bedRooms[i], description : desc };
 
@@ -120,7 +128,6 @@ export default class CreateRetreat extends Component {
 
   onChangeBedBooking(booked, i){
     const newBedroom = {...this.state.bedRooms[i], booked : booked };
-    console.log('booked', booked);
     let bedroomArray = this.state.bedRooms;
     bedroomArray[i] = newBedroom;
 
@@ -142,7 +149,6 @@ export default class CreateRetreat extends Component {
 
   renderBedroom(){
     return this.state.bedRooms.map(function(room, i){
-      console.log('bedroom', this.state.bedRooms);
 
       return <Bedroom key={i} roomNum={i} room={room} onChangeBedDescription={(desc) => this.onChangeBedDescription(desc, i)} onChangeBedCost={(cost) => this.onChangeBedCost(cost, i)} onChangeBedBooking={(booked) => this.onChangeBedBooking(booked, i)}></Bedroom>
     }, this)
@@ -152,30 +158,55 @@ export default class CreateRetreat extends Component {
     //prevent default form logic
     event.preventDefault();
 
-    console.log("Submit form : ", this.state)
-    const newRetreat = {
-      name : this.state.name,
-      dateStart : this.state.dateStart,
-      dateEnd : this.state.dateEnd,
-      retreatSummary : this.state.retreatSummary,
-      accomodationOverview : this.state.accomodationOverview,
-      bedRooms : [{
-        booked : this.state.bedRooms.booked,
-        description : this.state.bedRooms.description,
-        costPerPerson : this.state.bedRooms.costPerPerson
-      }],
-      food : this.state.food,
-      byCar : this.state.byCar,
-      byTrain : this.state.byTrain,
-      bookingDetails : this.state.bookingDetails,
-      bookingUrl : this.state.bookingUrl,
-      whatsIncluded : this.state.whatsIncluded
+    const formData = new FormData()
+    formData.append('retreatImg1', this.state.retreatImage, this.state.retreatImage.name);
+    formData.append('name', this.state.name);
+    formData.append('dateStart', this.state.dateStart);
+    formData.append('dateEnd', this.state.dateEnd);
+    formData.append('retreatSummary', this.state.retreatSummary);
+    formData.append('accomodationOverview', this.state.accomodationOverview);
+    formData.append('food', this.state.food);
+    formData.append('byCar', this.state.byCar);
+    formData.append('byTrain', this.state.byTrain);
+    formData.append('bookingDetails', this.state.bookingDetails);
+    formData.append('bookingUrl', this.state.bookingUrl);
+    formData.append('whatsIncluded', this.state.whatsIncluded);
+
+    for(var i = 0; i < this.state.bedRooms.length; i++){
+      formData.append('bedroom'+i, JSON.stringify(this.state.bedRooms[i]))
     }
+
+    console.log("Submit form : ", this.state)
+    // const newRetreat = {
+    //   retreatImage : formData,
+    //   name : this.state.name,
+    //   dateStart : this.state.dateStart,
+    //   dateEnd : this.state.dateEnd,
+    //   retreatSummary : this.state.retreatSummary,
+    //   accomodationOverview : this.state.accomodationOverview,
+    //   bedRooms : [{
+    //     booked : this.state.bedRooms.booked,
+    //     description : this.state.bedRooms.description,
+    //     costPerPerson : this.state.bedRooms.costPerPerson
+    //   }],
+    //   food : this.state.food,
+    //   byCar : this.state.byCar,
+    //   byTrain : this.state.byTrain,
+    //   bookingDetails : this.state.bookingDetails,
+    //   bookingUrl : this.state.bookingUrl,
+    //   whatsIncluded : this.state.whatsIncluded
+    // }
 
     const token = localStorage.getItem('jwtToken');
 
-    axios.post('http://localhost:1234/retreats/addRetreat', newRetreat, {
-      headers :{ Authorization : "Bearer " + token}
+    // set headers to pass as final argument in axios post
+    const headers = {
+      Authorization : "Bearer " + token,
+      'Content-Type': 'multipart/form-data'
+    }
+
+    axios.post('http://localhost:1234/retreats/addRetreat', formData, {
+      headers : headers
     })
       .then(res => console.log(res.data));
 
@@ -192,7 +223,8 @@ export default class CreateRetreat extends Component {
       byTrain : "",
       bookingDetails : "",
       bookingUrl : "",
-      whatsIncluded : []
+      whatsIncluded : [],
+      retreatImage : null
     })
   }
 
@@ -208,7 +240,7 @@ export default class CreateRetreat extends Component {
         </div>
         <div className="page-container">
           <h3>Create a retreat</h3>
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} encType="multipart/form-data">
 
               <div className="form-group">
                 <label>Retreat Name</label>
@@ -273,6 +305,11 @@ export default class CreateRetreat extends Component {
               <div className="form-group">
                 <label>What's included in the cost. <strong>Separate all values by commas.</strong> Eg food, wine, car parking, pringles</label>
                 <input type="text" className="form-control" value={this.state.whatsIncluded} onChange={this.onChangeWhatIncluded}></input>
+              </div>
+
+              <div className="form-group">
+                <label>Upload Images:</label>
+                 <input type="file" name="retreatImg1" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
 
               <div className="form-group">
