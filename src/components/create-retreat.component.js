@@ -119,6 +119,7 @@ export default class CreateRetreat extends Component {
 
     this.setState({bedRooms : bedroomArray });
   }
+
   onChangeBedCost(cost, i){
     const newBedroom = {...this.state.bedRooms[i], cost : cost };
 
@@ -130,6 +131,7 @@ export default class CreateRetreat extends Component {
 
   onChangeBedBooking(booked, i){
     const newBedroom = {...this.state.bedRooms[i], booked : booked };
+
     let bedroomArray = this.state.bedRooms;
     bedroomArray[i] = newBedroom;
 
@@ -152,7 +154,7 @@ export default class CreateRetreat extends Component {
   renderBedroom(){
     return this.state.bedRooms.map(function(room, i){
 
-      return <Bedroom key={i} roomNum={i} room={room} onChangeBedDescription={(desc) => this.onChangeBedDescription(desc, i)} onChangeBedCost={(cost) => this.onChangeBedCost(cost, i)} onChangeBedBooking={(booked) => this.onChangeBedBooking(booked, i)}></Bedroom>
+      return <Bedroom key={i} checkboxId={"booked-room" + i} roomNum={i} room={room} onChangeBedDescription={(desc) => this.onChangeBedDescription(desc, i)} onChangeBedCost={(cost) => this.onChangeBedCost(cost, i)} onChangeBedBooking={(booked) => this.onChangeBedBooking(booked, i)}></Bedroom>
     }, this)
   }
 

@@ -35,8 +35,8 @@ export default class Bedroom extends Component {
         </div>
 
         <div className="custom-control custom-switch">
-          <input type="checkbox" className="custom-control-input" id="booked-room" value={this.props.room.booked}  onClick={this.handleOnChangeBooked}/>
-          <label className="custom-control-label" htmlFor="booked-room">Booked</label>
+          <input type="checkbox" className="custom-control-input" id={this.props.checkboxId} value={this.props.room.booked}  onClick={this.handleOnChangeBooked}/>
+          <label className="custom-control-label" htmlFor={this.props.checkboxId}>Booked</label>
         </div>
         <div className="separator-long"></div>
       </div>

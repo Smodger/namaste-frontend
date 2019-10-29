@@ -10,20 +10,19 @@ export default class showRetreat extends Component {
 
   listBedrooms(){
     return this.props.retreat.bedRooms.map((room, i) => {
-      if(!this.props.retreat.bedRooms.booked){
+      if(room.booked){
         return (
           <div key={i}>
-            <p>Bedroom {i+1} - {room.description} - £{room.cost}</p>
+            <p>Bedroom {i + 1} - {room.description} - £{room.cost} - <strong>BOOKED</strong></p>
           </div>
         )
       }else{
         return (
           <div key={i}>
-            <p>Bedroom {i+1} - {room.description} - £{room.cost} - <strong>BOOKED</strong></p>
+            <p>Bedroom {i + 1} - {room.description} - £{room.cost}</p>
           </div>
         )
       }
-
     })
   }
 
@@ -82,7 +81,13 @@ export default class showRetreat extends Component {
             {this.howToBook()}
           </div>
 
-          <button onClick={this.props.onClick}>Back</button>
+          <div className="retreat-img-container">
+            <img className="retreat-image" src={"http://localhost:1234/"+this.props.retreat.retreatImages[0]} alt="images of yoga retreat"></img>
+            <img className="retreat-image" src={"http://localhost:1234/"+this.props.retreat.retreatImages[1]} alt="images of yoga retreat"></img>
+            <img className="retreat-image" src={"http://localhost:1234/"+this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
+          </div>
+
+          <button style={{"marginBottom" : 30}} onClick={this.props.onClick}>Back</button>
       </div>
 
     )
