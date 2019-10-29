@@ -180,8 +180,6 @@ export default class CreateRetreat extends Component {
     for(var j = 0; j < this.state.retreatImages.length; j++){
       formData.append(
         'retreatImages',
-        // JSON.stringify(this.state.retreatImages[j]),
-        // JSON.stringify(this.state.retreatImages[j].name)
         this.state.retreatImages[j],
         this.state.retreatImages[j].name
       )

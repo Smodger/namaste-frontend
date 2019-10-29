@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class Bedroom extends Component {
   constructor(props){
     super(props)
-
     this.handleOnChangeDescription = this.handleOnChangeDescription.bind(this);
     this.handleOnChangeCost = this.handleOnChangeCost.bind(this);
     this.handleOnChangeBooked = this.handleOnChangeBooked.bind(this);

@@ -69,7 +69,7 @@ export default class ListRetreats extends Component {
             </div>
           </div>
           <div className="all-retreats-container">
-            <h3>Yoga retreats</h3>
+            <h3 className="page-heading">Yoga retreats</h3>
             { this.retreatList() }
           </div>
         </div>

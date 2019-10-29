@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export default class showRetreat extends Component {
 
   listWhatsIncluded(){
-    console.log('props', this.props);
     return this.props.retreat.whatsIncluded.map((item, i) => {
       return <li key={i}>{item}</li>
     })
