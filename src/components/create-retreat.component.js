@@ -41,7 +41,7 @@ export default class CreateRetreat extends Component {
       bookingDetails : "",
       bookingUrl : "",
       whatsIncluded : [],
-      retreatImage : null
+      retreatImages : []
     }
   }
 
@@ -103,9 +103,11 @@ export default class CreateRetreat extends Component {
   }
 
   onChangeRetreatImage(event){
-    console.log('e', event.target.files[0]);
+    const newImage = [...this.state.retreatImages];
+    newImage.push(event.target.files[0]);
+
     this.setState({
-      retreatImage : event.target.files[0]
+      retreatImages : newImage
     })
   }
 
@@ -159,7 +161,6 @@ export default class CreateRetreat extends Component {
     event.preventDefault();
 
     const formData = new FormData()
-    formData.append('retreatImg1', this.state.retreatImage, this.state.retreatImage.name);
     formData.append('name', this.state.name);
     formData.append('dateStart', this.state.dateStart);
     formData.append('dateEnd', this.state.dateEnd);
@@ -173,29 +174,20 @@ export default class CreateRetreat extends Component {
     formData.append('whatsIncluded', this.state.whatsIncluded);
 
     for(var i = 0; i < this.state.bedRooms.length; i++){
-      formData.append('bedroom'+i, JSON.stringify(this.state.bedRooms[i]))
+      formData.append('bedRooms', JSON.stringify(this.state.bedRooms[i]))
+    }
+
+    for(var j = 0; j < this.state.retreatImages.length; j++){
+      formData.append(
+        'retreatImages',
+        // JSON.stringify(this.state.retreatImages[j]),
+        // JSON.stringify(this.state.retreatImages[j].name)
+        this.state.retreatImages[j],
+        this.state.retreatImages[j].name
+      )
     }
 
     console.log("Submit form : ", this.state)
-    // const newRetreat = {
-    //   retreatImage : formData,
-    //   name : this.state.name,
-    //   dateStart : this.state.dateStart,
-    //   dateEnd : this.state.dateEnd,
-    //   retreatSummary : this.state.retreatSummary,
-    //   accomodationOverview : this.state.accomodationOverview,
-    //   bedRooms : [{
-    //     booked : this.state.bedRooms.booked,
-    //     description : this.state.bedRooms.description,
-    //     costPerPerson : this.state.bedRooms.costPerPerson
-    //   }],
-    //   food : this.state.food,
-    //   byCar : this.state.byCar,
-    //   byTrain : this.state.byTrain,
-    //   bookingDetails : this.state.bookingDetails,
-    //   bookingUrl : this.state.bookingUrl,
-    //   whatsIncluded : this.state.whatsIncluded
-    // }
 
     const token = localStorage.getItem('jwtToken');
 
@@ -224,7 +216,7 @@ export default class CreateRetreat extends Component {
       bookingDetails : "",
       bookingUrl : "",
       whatsIncluded : [],
-      retreatImage : null
+      retreatImages : []
     })
   }
 
@@ -309,7 +301,9 @@ export default class CreateRetreat extends Component {
 
               <div className="form-group">
                 <label>Upload Images:</label>
-                 <input type="file" name="retreatImg1" className="block" onChange={this.onChangeRetreatImage}/>
+                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
+                 <input type="file" name="retreatImages" className="block" onChange={this.onChangeRetreatImage}/>
               </div>
 
               <div className="form-group">

@@ -3,8 +3,28 @@ import React, { Component } from 'react';
 export default class showRetreat extends Component {
 
   listWhatsIncluded(){
+    console.log('props', this.props);
     return this.props.retreat.whatsIncluded.map((item, i) => {
       return <li key={i}>{item}</li>
+    })
+  }
+
+  listBedrooms(){
+    return this.props.retreat.bedRooms.map((room, i) => {
+      if(!this.props.retreat.bedRooms.booked){
+        return (
+          <div key={i}>
+            <p>Bedroom {i+1} - {room.description} - £{room.cost}</p>
+          </div>
+        )
+      }else{
+        return (
+          <div key={i}>
+            <p>Bedroom {i+1} - {room.description} - £{room.cost} - <strong>BOOKED</strong></p>
+          </div>
+        )
+      }
+
     })
   }
 
@@ -20,39 +40,50 @@ export default class showRetreat extends Component {
 
   render(){
     return (
-      <div>
-        <h3>{this.props.retreat.name}</h3>
-        <p>{this.props.retreat.dateStart} - {this.props.retreat.dateEnd}</p>
-        <div className="separator"></div>
+      <div className="page-container">
+        <h3 className="page-heading">{this.props.retreat.name}</h3>
+        <p className="sub-heading">{this.props.retreat.dateStart} - {this.props.retreat.dateEnd}</p>
 
-        <h6>Overview</h6>
-        <p>{this.props.retreat.retreatSummary}</p>
-        <h6>What's Included</h6>
-        <ul>
-          {this.listWhatsIncluded()}
-        </ul>
+        <div className="separator-2"></div>
 
-        <h6>How to get there</h6>
-        <p>By car:</p>
-        <p>{this.props.retreat.byCar}</p>
-        <p>Other transport</p>
-        <p>{this.props.retreat.byTrain}</p>
+          <div className="shavasana">
+            <h6 className="retreat-heading">Overview</h6>
+            <p>{this.props.retreat.retreatSummary}</p>
+          </div>
 
-        <div>ADD HOUSING STUFF</div>
+          <div className="shavasana">
+            <h6 className="retreat-heading">What's Included</h6>
+            <ul>
+              {this.listWhatsIncluded()}
+            </ul>
+          </div>
 
-        <div>
-          <h6>Food Options</h6>
-          <p>{this.props.retreat.food}</p>
-        </div>
-
-        <div>
-          <h6>Booking information</h6>
-          <p>{this.props.retreat.bookingDetails}</p>
-          {this.howToBook()}
-        </div>
+          <div className="shavasana">
+            <h6 className="retreat-heading">How to get there</h6>
+            <p className="instruction-header">By car:</p>
+            <p style={{"marginLeft" : 15}}>{this.props.retreat.byCar}</p>
+            <p className="instruction-header">Public transport:</p>
+            <p style={{"marginLeft" : 15}}>{this.props.retreat.byTrain}</p>
+          </div>
 
 
-        <button onClick={this.props.onClick}>Back</button>
+          <div className="shavasana">
+            <h6 className="retreat-heading">Accommodation</h6>
+            {this.listBedrooms()}
+          </div>
+
+          <div className="shavasana">
+            <h6 className="retreat-heading">Food Options</h6>
+            <p>{this.props.retreat.food}</p>
+          </div>
+
+          <div className="shavasana">
+            <h6 className="retreat-heading">Booking information</h6>
+            <p>{this.props.retreat.bookingDetails}</p>
+            {this.howToBook()}
+          </div>
+
+          <button onClick={this.props.onClick}>Back</button>
       </div>
 
     )
