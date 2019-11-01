@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreateLesson from './create-lesson.component';
 import EditLesson from './edit-lesson.component';
+import EditRetreat from './edit-retreat.component';
 import LessonList from './lesson-list.component';
 import {About} from './about.component';
 import {Contact} from './contact.component';
@@ -58,7 +59,8 @@ export default class Header extends Component {
 
         <Route path="/" exact component={Home}></Route>
         <Route path="/lessons" component={LessonList}></Route>
-        <Route path="/edit/:id" component={EditLesson}></Route>
+        <Route path="/editLesson/:id" component={EditLesson}></Route>
+        <Route path="/editRetreat/:id" component={EditRetreat}></Route>
         <Route path="/create-lesson" component={CreateLesson}></Route>
         <Route path="/about" component={About}></Route>
         <Route path="/contact" component={Contact}></Route>

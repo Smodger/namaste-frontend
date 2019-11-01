@@ -13,6 +13,7 @@ export default class EditLesson extends Component {
     this.updateLocation = this.updateLocation.bind(this);
     this.updateYogaStyle = this.updateYogaStyle.bind(this);
     this.updateURL = this.updateURL.bind(this);
+    this.updateInfo = this.updateInfo.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -34,7 +35,8 @@ export default class EditLesson extends Component {
           startMinutes : res.data.startMinutes,
           location : res.data.location,
           yogaStyle : res.data.yogaStyle,
-          linkToStudio : res.data.linkToStudio
+          linkToStudio : res.data.linkToStudio,
+          additionalInfo : res.data.additionalInfo
         })
       })
       .catch(function(err){
@@ -78,6 +80,12 @@ export default class EditLesson extends Component {
     })
   }
 
+  updateInfo(event){
+    this.setState({
+      additionalInfo : event.target.value
+    })
+  }
+
   onSubmit(event){
     event.preventDefault();
     const token = localStorage.getItem('jwtToken');
@@ -87,7 +95,8 @@ export default class EditLesson extends Component {
       startMinutes : this.state.startMinutes,
       location : this.state.location,
       yogaStyle : this.state.yogaStyle,
-      linkToStudio : this.state.linkToStudio
+      linkToStudio : this.state.linkToStudio,
+      additionalInfo : this.state.additionalInfo
     };
 
     axios.post('http://localhost:1234/lessons/update/' + this.props.match.params.id, lessonObj, {
@@ -95,7 +104,7 @@ export default class EditLesson extends Component {
     })
       .then(res => console.log('data', res.data));
 
-    this.props.history.push('/')
+    this.props.history.push('/lessons')
   }
 
   render(){
@@ -136,6 +145,12 @@ export default class EditLesson extends Component {
             <div className="form-group">
               <label>Link to Studio</label>
               <input type="string" className="form-control" value={this.state.linkToStudio} onChange={this.updateURL}></input>
+            </div>
+
+
+            <div className="form-group">
+              <label>Additional information</label>
+              <input type="string" className="form-control" value={this.state.additionalInfo} onChange={this.updateInfo}></input>
             </div>
 
             <div className="form-group">

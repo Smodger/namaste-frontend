@@ -12,6 +12,7 @@ export default class CreateLesson extends Component {
     this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onChangeYogaStyle = this.onChangeYogaStyle.bind(this);
     this.onChangeStudio = this.onChangeStudio.bind(this);
+    this.onChangeInfo = this.onChangeInfo.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -21,6 +22,7 @@ export default class CreateLesson extends Component {
       location : "",
       yogaStyle : "",
       linkToStudio : "",
+      additionalInfo : "",
       token : ''
     }
   }
@@ -61,6 +63,12 @@ export default class CreateLesson extends Component {
     })
   }
 
+  onChangeInfo(event){
+    this.setState({
+      additionalInfo : event.target.value
+    })
+  }
+
   onSubmit(event){
     //prevent default form logic
     event.preventDefault();
@@ -73,7 +81,8 @@ export default class CreateLesson extends Component {
       startMinutes : this.state.startMinutes,
       location : this.state.location,
       yogaStyle : this.state.yogaStyle,
-      linkToStudio : this.state.linkToStudio
+      linkToStudio : this.state.linkToStudio,
+      additionalInfo : this.state.additionalInfo
     }
 
     const token = localStorage.getItem('jwtToken');
@@ -90,7 +99,8 @@ export default class CreateLesson extends Component {
       startMinutes : "",
       location : "",
       yogaStyle : "",
-      linkToStudio : ""
+      linkToStudio : "",
+      additionalInfo : ""
     })
   }
 
@@ -132,6 +142,11 @@ export default class CreateLesson extends Component {
             <div className="form-group">
               <label>Link to Yoga Studio</label>
               <input type="text" className="form-control" value={this.state.linkToStudio} onChange={this.onChangeStudio}></input>
+            </div>
+
+            <div className="form-group">
+              <label>Additional Information</label>
+              <input type="text" className="form-control" value={this.state.additionalInfo} onChange={this.onChangeInfo}></input>
             </div>
 
             <div className="form-group">

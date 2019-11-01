@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default class showRetreat extends Component {
+  constructor(props){
+    super(props)
+
+    this.handleDeleteRetreat = this.handleDeleteRetreat.bind(this);
+  }
+
 
   listWhatsIncluded(){
+    console.log('props', this.props.retreat);
     return this.props.retreat.whatsIncluded.map((item, i) => {
       return <li key={i}>{item}</li>
     })
@@ -34,6 +43,20 @@ export default class showRetreat extends Component {
     if(!this.props.retreat.bookingUrl){
       return <p>Contact me to book at <a href="mailto:emthomsonyoga@gmail.com">emthomsonyoga@gmail.com</a></p>
     }
+  }
+
+  handleDeleteRetreat(){
+    const token = localStorage.getItem('jwtToken');
+
+    axios.delete('http://localhost:1234/retreats/delete/'+ this.props.retreat._id, { headers : { Authorization: `Bearer ${token}`}})
+      .then(res =>{
+        console.log('Lesson Deleted',this.props.retreat._id);
+      })
+      .catch(function(err){
+        console.log('errror deleting lesson', err);
+      })
+
+    window.location.reload();
   }
 
   render(){
@@ -87,6 +110,10 @@ export default class showRetreat extends Component {
             <img className="retreat-image" src={"http://localhost:1234/"+this.props.retreat.retreatImages[2]} alt="images of yoga retreat"></img>
           </div>
 
+          <div>
+            <Link to={"/editRetreat/" + this.props.retreat._id}>Edit</Link>
+            <button className="btn btn-danger" onClick={this.handleDeleteRetreat}>Delete</button>
+          </div>
           <button style={{"marginBottom" : 30}} onClick={this.props.onClick}>Back</button>
       </div>
 

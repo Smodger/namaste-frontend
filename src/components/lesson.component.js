@@ -24,7 +24,7 @@ export default class Lesson extends Component {
     if(this.state.token){
       return(
         <td>
-          <Link to={"/edit/" + this.state.lesson._id}>Edit</Link>
+          <Link to={"/editLesson/" + this.state.lesson._id}>Edit</Link>
           <button className="btn btn-danger" onClick={this.handleDeleteLesson}>Delete</button>
         </td>
       )
@@ -40,7 +40,14 @@ export default class Lesson extends Component {
 
   tootingInfo(){
     if(this.state.lesson.location === 'Tooting Bec Lido'){
-      return <td>{this.state.lesson.linkToStudio}</td>
+      return (
+        <td>
+          {this.state.lesson.linkToStudio}
+          <br></br>
+          <br></br>
+          <strong>{this.state.lesson.additionalInfo}</strong>
+        </td>
+      )
     }
     else{
       return <td></td>
@@ -56,6 +63,12 @@ export default class Lesson extends Component {
     }
   }
 
+  showAdditionalInfo(){
+    if(this.state.lesson.additionalInfo){
+      return <td>{this.state.lesson.additionalInfo}</td>
+    }
+  }
+
   render(){
     return (
       <tr>
@@ -64,6 +77,7 @@ export default class Lesson extends Component {
         <td><a className="hover-pink" href={'//'+this.state.lesson.linkToStudio} target="_blank" rel="noopener noreferrer">{this.state.lesson.location}</a></td>
         <td>{this.state.lesson.yogaStyle}</td>
         {this.tootingInfo()}
+        {this.showAdditionalInfo()}
         {this.isLoggedIn()}
       </tr>
     )
