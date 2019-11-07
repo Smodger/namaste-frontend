@@ -185,7 +185,7 @@ export default class LessonList extends Component {
             </tbody>
           </table>
         </div>
-        <Images></Images>
+        <Images page="lessons"></Images>
 
       </div>
     )

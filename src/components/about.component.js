@@ -39,7 +39,7 @@ export const About = (props) => {
         <p style={{"marginTop":25, "textAlign" : 'center'}}>Get yourself engaged with the present moment - stretch, breathe and clear the mind.</p>
 
       </div>
-      <Images></Images>
+      <Images page="about"></Images>
     </div>
   );
 }

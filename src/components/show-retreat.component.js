@@ -72,6 +72,8 @@ export default class showRetreat extends Component {
             <p>{this.props.retreat.retreatSummary}</p>
           </div>
 
+          <img className="retreat-image-landscape" src={"http://localhost:1234/" + this.props.retreat.retreatImages[6]} alt="retreat overview"></img>
+
           <div className="shavasana">
             <h6 className="retreat-heading">What's Included</h6>
             <ul>
@@ -96,6 +98,12 @@ export default class showRetreat extends Component {
           <div className="shavasana">
             <h6 className="retreat-heading">Food Options</h6>
             <p>{this.props.retreat.food}</p>
+          </div>
+
+          <div className="shavasana">
+            <img className="retreat-image" src={"http://localhost:1234/" + this.props.retreat.retreatImages[3]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image" src={"http://localhost:1234/" + this.props.retreat.retreatImages[4]} alt="Images of food available at the retreat"></img>
+            <img className="retreat-image" src={"http://localhost:1234/" + this.props.retreat.retreatImages[5]} alt="Images of food available at the retreat"></img>
           </div>
 
           <div className="shavasana">

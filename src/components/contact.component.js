@@ -24,7 +24,7 @@ export const Contact = (props) => {
       </div>
       <div className="contact-logo"></div>
 
-      <Images></Images>
+      <Images page="contact"></Images>
     </div>
   )
 }

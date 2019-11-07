@@ -163,10 +163,6 @@ body {
   display: inline-block;
   width : 300px;
   height : 200px;
-  background-image : url('./images/yoga-retreat-stock.jpg');
-  background-size: contain;
-  background-position : center;
-  background-repeat : no-repeat;
 }
 
 .retreat-text{
@@ -216,5 +212,10 @@ body {
 .retreat-image{
   width: 33%;
   height: 300px;
+  display: inline-block;
+}
+
+.retreat-image-landscape{
+  width: 100%;
   display: inline-block;
 }
